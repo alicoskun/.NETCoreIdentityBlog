@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CoreIdentity.Models.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoreIdentity
 {
-    public class BloggingContext : DbContext
+    public class BloggingContext : IdentityDbContext<User, Role, int>
     {
         public BloggingContext(DbContextOptions<BloggingContext> options)
             : base(options)
@@ -14,7 +16,29 @@ namespace CoreIdentity
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<Role>(builder =>
+            {
+                builder.ToTable("Role");
+            });
+            modelBuilder.Entity<User>(builder =>
+            {
+                builder.ToTable("User");
+            });
+            modelBuilder.Entity<UserRole>(builder =>
+            {
+                builder.HasOne(userRole => userRole.Role).WithMany(role => role.Users).HasForeignKey(userRole => userRole.RoleId);
+                builder.HasOne(userRole => userRole.User).WithMany(user => user.Roles).HasForeignKey(userRole => userRole.UserId);
+                builder.ToTable("UserRole");
+            });
+        }
     }
+
+
 
     public class Blog
     {
