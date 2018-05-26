@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CoreIdentity;
+using CoreIdentity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreIdentity.Controllers
 {
+    [Authorize]
     public class BlogsController : Controller
     {
         private readonly BloggingContext _context;
@@ -33,7 +32,7 @@ namespace CoreIdentity.Controllers
             }
 
             var blog = await _context.Blogs
-                .SingleOrDefaultAsync(m => m.BlogId == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
                 return NotFound();
@@ -53,7 +52,7 @@ namespace CoreIdentity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Url")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,Url")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +71,7 @@ namespace CoreIdentity.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blogs.SingleOrDefaultAsync(m => m.BlogId == id);
+            var blog = await _context.Blogs.SingleOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
                 return NotFound();
@@ -85,9 +84,9 @@ namespace CoreIdentity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Url")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Url")] Blog blog)
         {
-            if (id != blog.BlogId)
+            if (id != blog.Id)
             {
                 return NotFound();
             }
@@ -101,7 +100,7 @@ namespace CoreIdentity.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BlogExists(blog.BlogId))
+                    if (!BlogExists(blog.Id))
                     {
                         return NotFound();
                     }
@@ -124,7 +123,7 @@ namespace CoreIdentity.Controllers
             }
 
             var blog = await _context.Blogs
-                .SingleOrDefaultAsync(m => m.BlogId == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (blog == null)
             {
                 return NotFound();
@@ -138,7 +137,7 @@ namespace CoreIdentity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var blog = await _context.Blogs.SingleOrDefaultAsync(m => m.BlogId == id);
+            var blog = await _context.Blogs.SingleOrDefaultAsync(m => m.Id == id);
             _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -146,7 +145,7 @@ namespace CoreIdentity.Controllers
 
         private bool BlogExists(int id)
         {
-            return _context.Blogs.Any(e => e.BlogId == id);
+            return _context.Blogs.Any(e => e.Id == id);
         }
     }
 }
