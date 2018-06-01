@@ -29,6 +29,7 @@ namespace CoreIdentity
                 .AddEntityFrameworkStores<BloggingContext>()
                 .AddDefaultTokenProviders();
 
+            //services.AddWindsor
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();

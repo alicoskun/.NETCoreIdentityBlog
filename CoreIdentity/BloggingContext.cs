@@ -19,10 +19,6 @@ namespace CoreIdentity
         {
             base.OnModelCreating(modelBuilder);
             
-            /*modelBuilder.Entity<Role>(builder =>
-            {
-                builder.ToTable("Role");
-            });*/
             modelBuilder.Entity<User>(builder =>
             {
                 builder.ToTable("AspNetUsers");
@@ -34,14 +30,6 @@ namespace CoreIdentity
                 builder.HasOne(userPost => userPost.User).WithMany(user => user.UserPosts).HasForeignKey(userPost => userPost.UserId);
                 builder.ToTable("UserPost");
             });
-            /*modelBuilder.Entity<UserRole>(builder =>
-            {
-                builder.HasOne(userRole => userRole.Role).WithMany(role => role.Users).HasForeignKey(userRole => userRole.RoleId);
-                builder.HasOne(userRole => userRole.User).WithMany(user => user.Roles).HasForeignKey(userRole => userRole.UserId);
-                builder.ToTable("UserRole");
-            });*/
         }
-
-        public DbSet<CoreIdentity.Models.Identity.User> User { get; set; }
     }
 }
