@@ -17,4 +17,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreIdentity.Bootstrapper\CoreIdentity.Bootstrapper.csproj" />
+    <ProjectReference Include="..\CoreIdentity.Core\CoreIdentity.Core.csproj" />
+    <ProjectReference Include="..\CoreIdentity.Infrastructure\CoreIdentity.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

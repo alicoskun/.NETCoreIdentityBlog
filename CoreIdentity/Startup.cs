@@ -1,5 +1,5 @@
-﻿using CoreIdentity.Models.Identity;
-using CoreIdentity.Services;
+﻿using CoreIdentity.Bootstrapper;
+using CoreIdentity.Models.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +20,7 @@ namespace CoreIdentity
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BloggingContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
@@ -28,11 +28,12 @@ namespace CoreIdentity
             services.AddIdentity<User, IdentityRole<int>>()
                 .AddEntityFrameworkStores<BloggingContext>()
                 .AddDefaultTokenProviders();
-
-            //services.AddWindsor
-            services.AddTransient<IEmailSender, EmailSender>();
+            
+            //services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            return WindsorConfiguration.Configure(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

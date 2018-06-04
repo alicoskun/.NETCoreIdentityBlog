@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity", "CoreIdentity\CoreIdentity.csproj", "{8C1287B4-3D9C-4F80-A63A-20914548CBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity", "CoreIdentity\CoreIdentity.csproj", "{8C1287B4-3D9C-4F80-A63A-20914548CBA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity.Bootstrapper", "CoreIdentity.Bootstrapper\CoreIdentity.Bootstrapper.csproj", "{E097C078-364A-4B2B-A348-C2EE9F1C3E47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity.Bootstrapper", "CoreIdentity.Bootstrapper\CoreIdentity.Bootstrapper.csproj", "{E097C078-364A-4B2B-A348-C2EE9F1C3E47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity.Core", "CoreIdentity.Core\CoreIdentity.Core.csproj", "{FC415741-3E7F-4AAF-ADA1-DB194E93F274}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity.Core", "CoreIdentity.Core\CoreIdentity.Core.csproj", "{FC415741-3E7F-4AAF-ADA1-DB194E93F274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity.Data", "CoreIdentity.Data\CoreIdentity.Data.csproj", "{DA8C3E7B-046A-4031-B105-543B0841CA4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity.Data", "CoreIdentity.Data\CoreIdentity.Data.csproj", "{DA8C3E7B-046A-4031-B105-543B0841CA4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity.Infrastructure", "CoreIdentity.Infrastructure\CoreIdentity.Infrastructure.csproj", "{FED6D54B-E0BB-4A00-927D-90BFF43AA1E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity.Infrastructure", "CoreIdentity.Infrastructure\CoreIdentity.Infrastructure.csproj", "{FED6D54B-E0BB-4A00-927D-90BFF43AA1E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity.Test", "CoreIdentity.Test\CoreIdentity.Test.csproj", "{8DA77891-7496-4F2D-85EF-CE03C8286681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity.Test", "CoreIdentity.Test\CoreIdentity.Test.csproj", "{8DA77891-7496-4F2D-85EF-CE03C8286681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity.DomainModels", "CoreIdentity.DomainModels\CoreIdentity.DomainModels.csproj", "{F6048A04-CF94-4856-B8C1-8E43148E7E0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8DA77891-7496-4F2D-85EF-CE03C8286681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA77891-7496-4F2D-85EF-CE03C8286681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA77891-7496-4F2D-85EF-CE03C8286681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6048A04-CF94-4856-B8C1-8E43148E7E0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6048A04-CF94-4856-B8C1-8E43148E7E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6048A04-CF94-4856-B8C1-8E43148E7E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6048A04-CF94-4856-B8C1-8E43148E7E0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="DomainModels\Identity\" />
     <Folder Include="Identity\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Service\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreIdentity.DomainModels\CoreIdentity.DomainModels.csproj" />
   </ItemGroup>
 
 </Project>
