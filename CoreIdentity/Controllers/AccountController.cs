@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CoreIdentity.Models.Identity;
+using CoreIdentity.DomainModels.Identity;
 using CoreIdentity.Models.AccountViewModels;
 using CoreIdentity.Services;
 using CoreIdentity.Infrastructure.Logging;

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CoreIdentity.Models.Identity
+namespace CoreIdentity.DomainModels.Identity
 {
     public class Role : IdentityRole<int>
     {
@@ -18,6 +15,5 @@ namespace CoreIdentity.Models.Identity
         }
 
         public virtual ICollection<UserRole> Users { get; set; }
-        //public virtual ICollection<RoleClaim> Claims { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CoreIdentity.Models
+namespace CoreIdentity.DomainModels
 {
     public class Blog : BaseEntity
     {

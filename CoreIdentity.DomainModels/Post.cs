@@ -1,7 +1,7 @@
-﻿using CoreIdentity.Models.Identity;
+﻿using CoreIdentity.DomainModels.Identity;
 using System.Collections.Generic;
 
-namespace CoreIdentity.Models
+namespace CoreIdentity.DomainModels
 {
     public class Post : BaseEntity
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreIdentity.Models.Identity
+namespace CoreIdentity.DomainModels.Identity
 {
     public class UserRole : IdentityUserRole<int>
     {

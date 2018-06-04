@@ -1,5 +1,6 @@
 ﻿using CoreIdentity.Bootstrapper;
-using CoreIdentity.Models.Identity;
+using CoreIdentity.Core.Data.Imp;
+using CoreIdentity.DomainModels.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

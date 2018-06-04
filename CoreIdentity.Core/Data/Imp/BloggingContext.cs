@@ -1,10 +1,10 @@
-﻿using CoreIdentity.Models;
-using CoreIdentity.Models.Identity;
+﻿using CoreIdentity.DomainModels;
+using CoreIdentity.DomainModels.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoreIdentity
+namespace CoreIdentity.Core.Data.Imp
 {
     public class BloggingContext : IdentityDbContext<User, IdentityRole<int>, int>
     {

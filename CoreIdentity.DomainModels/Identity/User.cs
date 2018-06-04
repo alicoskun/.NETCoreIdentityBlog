@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
-namespace CoreIdentity.Models.Identity
+namespace CoreIdentity.DomainModels.Identity
 {
     public class User : IdentityUser<int>
     {

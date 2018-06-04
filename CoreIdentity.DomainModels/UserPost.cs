@@ -1,6 +1,6 @@
-﻿using CoreIdentity.Models.Identity;
+﻿using CoreIdentity.DomainModels.Identity;
 
-namespace CoreIdentity.Models
+namespace CoreIdentity.DomainModels
 {
     public class UserPost
     {

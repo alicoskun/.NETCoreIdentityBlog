@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using CoreIdentity.Models;
 using CoreIdentity.Services;
+using CoreIdentity.Models;
 
 namespace CoreIdentity.Controllers
 {

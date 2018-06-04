@@ -2,27 +2,30 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CoreIdentity.Models;
+using CoreIdentity.DomainModels;
 using Microsoft.AspNetCore.Authorization;
+using CoreIdentity.Core.Data;
 
 namespace CoreIdentity.Controllers
 {
     [Authorize]
     public class BlogsController : Controller
     {
-        private readonly BloggingContext _context;
+        //private readonly BloggingContext _context;
+        private readonly IService<Blog> _service;
 
-        public BlogsController(BloggingContext context)
+        public BlogsController(IService<Blog> service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Blogs.ToListAsync());
+            return View(await _service.GetAllAsync());
+            //return View(await _context.Blogs.ToListAsync());
         }
-
+        /*
         // GET: Blogs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -146,6 +149,6 @@ namespace CoreIdentity.Controllers
         private bool BlogExists(int id)
         {
             return _context.Blogs.Any(e => e.Id == id);
-        }
+        }*/
     }
 }
