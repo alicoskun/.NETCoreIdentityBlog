@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CoreIdentity.Core.Data;
 using CoreIdentity.Core.Data.Imp;
-using CoreIdentity.DomainModels;
+using CoreIdentity.Data;
 using CoreIdentity.Infrastructure.Interceptors;
 using CoreIdentity.Services;
 
@@ -16,10 +16,7 @@ namespace CoreIdentity.Infrastructure.Installers
             container.Register(
                 Component.For<IEmailSender>()
                  .ImplementedBy<EmailSender>()
-                 .Interceptors<LoggingInterceptor>());
-            /*container.Register(
-                Component.For<IService<Blog>>()
-                .ImplementedBy<Service<Blog>>());*/
+                 .Interceptors<LoggingInterceptor>()); 
             container.Register(
                 Component.For(typeof(IEntitiesContext))
                 .ImplementedBy(typeof(BloggingContext)));

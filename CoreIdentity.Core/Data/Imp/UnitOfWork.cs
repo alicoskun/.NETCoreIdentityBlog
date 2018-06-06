@@ -12,6 +12,9 @@ namespace CoreIdentity.Core.Data.Imp
         private bool _disposed;
         private Hashtable _repositories;
 
+        public UnitOfWork()
+        {
+        }
         public UnitOfWork(IEntitiesContext context)
         {
             _context = context;
@@ -40,12 +43,12 @@ namespace CoreIdentity.Core.Data.Imp
 
         public Task<int> SaveChangesAsync()
         {
-            return _context.SaveChangesAsync();
+            return _context.SaveChangesAsyncContext();
         }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            return _context.SaveChangesAsync(cancellationToken);
+            return _context.SaveChangesAsyncContext(cancellationToken);
         }
 
         public void BeginTransaction()

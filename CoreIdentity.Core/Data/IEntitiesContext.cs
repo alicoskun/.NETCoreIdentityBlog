@@ -13,8 +13,8 @@ namespace CoreIdentity.Core.Data
         void SetAsModified<TEntity>(TEntity entity) where TEntity : BaseEntity;
         void SetAsDeleted<TEntity>(TEntity entity) where TEntity : BaseEntity;
         int SaveChanges();
-        Task<int> SaveChangesAsync();
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsyncContext();
+        Task<int> SaveChangesAsyncContext(CancellationToken cancellationToken);
         void BeginTransaction();
         int Commit();
         void Rollback();

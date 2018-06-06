@@ -25,7 +25,7 @@ namespace CoreIdentity.Controllers
             return View(await _service.GetAllAsync());
             //return View(await _context.Blogs.ToListAsync());
         }
-        /*
+        
         // GET: Blogs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,8 +34,7 @@ namespace CoreIdentity.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blogs
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var blog = await _service.GetByIdAsync(id);
             if (blog == null)
             {
                 return NotFound();
@@ -49,7 +48,7 @@ namespace CoreIdentity.Controllers
         {
             return View();
         }
-
+        
         // POST: Blogs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -59,13 +58,13 @@ namespace CoreIdentity.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(blog);
-                await _context.SaveChangesAsync();
+                await _service.AddAsync(blog);
+                await _service.UnitOfWork.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(blog);
         }
-
+        
         // GET: Blogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -74,7 +73,7 @@ namespace CoreIdentity.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blogs.SingleOrDefaultAsync(m => m.Id == id);
+            var blog = await _service.GetByIdAsync(id);
             if (blog == null)
             {
                 return NotFound();
@@ -98,8 +97,8 @@ namespace CoreIdentity.Controllers
             {
                 try
                 {
-                    _context.Update(blog);
-                    await _context.SaveChangesAsync();
+                    _service.Update(blog);
+                    await _service.UnitOfWork.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,8 +124,7 @@ namespace CoreIdentity.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blogs
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var blog = await _service.GetByIdAsync(id);
             if (blog == null)
             {
                 return NotFound();
@@ -140,15 +138,15 @@ namespace CoreIdentity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var blog = await _context.Blogs.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Blogs.Remove(blog);
-            await _context.SaveChangesAsync();
+            var blog = await _service.GetByIdAsync(id);
+            _service.Delete(blog);
+            await _service.UnitOfWork.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BlogExists(int id)
         {
-            return _context.Blogs.Any(e => e.Id == id);
-        }*/
+            return _service.GetById(id).GetType().Equals(typeof(Blog));
+        }
     }
 }

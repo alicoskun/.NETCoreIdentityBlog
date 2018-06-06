@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
-namespace CoreIdentity.Migrations
+namespace CoreIdentity.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,9 +14,9 @@ namespace CoreIdentity.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,20 +29,20 @@ namespace CoreIdentity.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +50,7 @@ namespace CoreIdentity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Blogs",
+                name: "Blog",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -60,7 +59,7 @@ namespace CoreIdentity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blogs", x => x.Id);
+                    table.PrimaryKey("PK_Blog", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,9 +68,9 @@ namespace CoreIdentity.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<int>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<int>(nullable: false)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,9 +89,9 @@ namespace CoreIdentity.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: false)
+                    ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -170,22 +169,22 @@ namespace CoreIdentity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Posts",
+                name: "Post",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BlogId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true)
+                    BlogId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.PrimaryKey("PK_Post", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_Blogs_BlogId",
+                        name: "FK_Post_Blog_BlogId",
                         column: x => x.BlogId,
-                        principalTable: "Blogs",
+                        principalTable: "Blog",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -196,16 +195,16 @@ namespace CoreIdentity.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PostId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    PostId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserPost", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserPost_Posts_PostId",
+                        name: "FK_UserPost_Post_PostId",
                         column: x => x.PostId,
-                        principalTable: "Posts",
+                        principalTable: "Post",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -256,8 +255,8 @@ namespace CoreIdentity.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_BlogId",
-                table: "Posts",
+                name: "IX_Post_BlogId",
+                table: "Post",
                 column: "BlogId");
 
             migrationBuilder.CreateIndex(
@@ -295,13 +294,13 @@ namespace CoreIdentity.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "Post");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Blogs");
+                name: "Blog");
         }
     }
 }

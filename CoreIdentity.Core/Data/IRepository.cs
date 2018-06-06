@@ -25,7 +25,7 @@ namespace CoreIdentity.Core.Data
         Task<PaginatedList<TEntity>> GetAllAsync(int pageIndex, int pageSize, Expression<Func<TEntity, int>> keySelector, OrderBy orderBy = OrderBy.Ascending);
         Task<PaginatedList<TEntity>> GetAllAsync(int pageIndex, int pageSize, Expression<Func<TEntity, int>> keySelector, Expression<Func<TEntity, bool>> predicate, OrderBy orderBy, params Expression<Func<TEntity, object>>[] includeProperties);
         Task<List<TEntity>> GetAllIncludingAsync(params Expression<Func<TEntity, object>>[] includeProperties);
-        Task<TEntity> GetSingleAsync(int id);
+        Task<TEntity> GetSingleAsync(int? id);
         Task<TEntity> GetSingleIncludingAsync(int id, params Expression<Func<TEntity, object>>[] includeProperties);
         Task<List<TEntity>> FindByAsync(Expression<Func<TEntity, bool>> predicate);
     }

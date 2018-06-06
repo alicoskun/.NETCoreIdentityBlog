@@ -113,7 +113,7 @@ namespace CoreIdentity.Core.Data.Imp
             return entities.ToListAsync();
         }
 
-        public Task<TEntity> GetSingleAsync(int id)
+        public Task<TEntity> GetSingleAsync(int? id)
         {
             return _dbEntitySet.FirstOrDefaultAsync(t => t.Id == id);
         }

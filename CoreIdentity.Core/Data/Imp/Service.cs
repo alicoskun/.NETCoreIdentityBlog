@@ -82,7 +82,7 @@ namespace CoreIdentity.Core.Data.Imp
             return _repository.GetAllAsync(pageIndex, pageSize, keySelector, predicate, orderBy, includeProperties);
         }
 
-        public Task<TEntity> GetByIdAsync(int id)
+        public Task<TEntity> GetByIdAsync(int? id)
         {
             return _repository.GetSingleAsync(id);
         }
