@@ -12,9 +12,10 @@ namespace CoreIdentity.Bootstrapper
         {
             var container = new WindsorContainer();
 
+            container.Install(new UoWRepositoryInstaller());
             container.Install(new ServiceInstaller());
             container.Install(new ControllerInstaller());
-            container.Install(new InterceptorInstaller());
+            container.Install(new InterceptorInstaller());            
 
             return WindsorRegistrationHelper.CreateServiceProvider(container, services);
         }

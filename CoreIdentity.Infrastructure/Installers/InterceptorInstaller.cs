@@ -9,7 +9,9 @@ namespace CoreIdentity.Infrastructure.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<LoggingInterceptor>().LifeStyle.Transient);
+            container.Register(
+                Component.For<LoggingInterceptor>()
+                .LifeStyle.Transient);
         }
     }
 }

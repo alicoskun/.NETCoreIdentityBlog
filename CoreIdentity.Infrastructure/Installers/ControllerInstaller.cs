@@ -8,9 +8,9 @@ namespace CoreIdentity.Infrastructure.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(
+            /*container.Register(
                 Classes.FromAssemblyNamed("CoreIdentity").Pick().If(p => p.Name.EndsWith("Controller"))
-                .LifestyleTransient());
+                .LifestyleTransient());*/
                 //.Configure(component => component.Interceptors<LoggingInterceptor>()));
         }
     }
