@@ -8,6 +8,7 @@ namespace CoreIdentity.Test
         [TestMethod]
         [DataRow(12, 5, 2018)]
         public void Alias (int day, int month, int year)
+        //public void Alias ((int year, int month, int day) date)
         {
             string filename = "unittest";
             string url = "https://alicoskun.github.io";
